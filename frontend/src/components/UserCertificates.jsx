@@ -1,4 +1,10 @@
 import { useState, useEffect } from "react";
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
+// Set up PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 function UserCertificates() {
   const [certificates, setCertificates] = useState([]);
@@ -38,16 +44,68 @@ function UserCertificates() {
       <h2 className="text-2xl font-bold mb-6">My Certificates</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {certificates.map((cert, i) => (
-          <div key={i} className="border rounded-lg shadow-lg overflow-hidden">
-            <img 
-              src={cert.imageUrl} 
-              alt={cert.name} 
-              className="w-full h-48 object-cover"
-            />
+          <div key={i} className="border rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+            {/* Certificate Preview */}
+            <div className="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+              {cert.imageUrl?.endsWith('.pdf') ? (
+                <Document
+                  file={cert.imageUrl}
+                  loading={
+                    <div className="flex items-center justify-center h-full">
+                      <div className="text-center">
+                        <div className="text-4xl mb-2">📄</div>
+                        <p className="text-sm text-gray-500">Loading PDF...</p>
+                      </div>
+                    </div>
+                  }
+                  error={
+                    <div className="flex items-center justify-center h-full">
+                      <div className="text-center p-4">
+                        <div className="text-6xl mb-2">📄</div>
+                        <p className="text-sm text-gray-600 font-semibold">PDF Certificate</p>
+                        <a 
+                          href={cert.imageUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-600 text-xs hover:underline mt-2 inline-block"
+                        >
+                          Click to view
+                        </a>
+                      </div>
+                    </div>
+                  }
+                >
+                  <Page 
+                    pageNumber={1} 
+                    width={300}
+                    renderTextLayer={false}
+                    renderAnnotationLayer={false}
+                  />
+                </Document>
+              ) : (
+                <img 
+                  src={cert.imageUrl} 
+                  alt={cert.name} 
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+            
+            {/* Certificate Details */}
             <div className="p-4">
               <h3 className="text-xl font-semibold mb-2">{cert.name}</h3>
-              <p className="text-gray-700 mb-1">Course: {cert.course}</p>
-              <p className="text-gray-600 text-sm">{cert.details}</p>
+              <p className="text-gray-700 mb-1"><span className="font-medium">Course:</span> {cert.course}</p>
+              <p className="text-gray-600 text-sm mb-3">{cert.details}</p>
+              
+              {/* View/Download Button */}
+              <a 
+                href={cert.imageUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm"
+              >
+                {cert.imageUrl?.endsWith('.pdf') ? 'View Full PDF' : 'View Certificate'}
+              </a>
             </div>
           </div>
         ))}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function AdminUpload() {
   const [formData, setFormData] = useState({
@@ -11,9 +12,22 @@ function AdminUpload() {
 
   // List of existing certificate images
   const certificateImages = [
-    "/src/assets/cert1.png",
-    "/src/assets/cert2.png",
-    "/src/assets/cert3.jpg"
+    "/src/assets/Ahmed-Abd-Al-Aziz_20250908_152858_0000.pdf",
+    "/src/assets/Ahmed_CEAIA1-1.pdf",
+    "/src/assets/AnjanaKumudu-Gayantha-Vijayaveera-_20250908_152931_0000.pdf",
+    "/src/assets/Ayyappan-Paramesh_20250908_152955_0000.pdf",
+    "/src/assets/Ben-Teunissen.pdf",
+    "/src/assets/Kishore-N-V-S-S-Tummalapalli.pdf",
+    "/src/assets/Mandyam-Niranjan_20250908_153016_0000.pdf",
+    "/src/assets/Mubin-Shaik.pdf",
+    "/src/assets/Mubin-Shaik_20251023_133455_0000.pdf",
+    "/src/assets/Rizvi-Athram.pdf",
+    "/src/assets/Sahaya-Thivearaj.pdf",
+    "/src/assets/Satyanarayana-Komaravolu_20250908_153041_0000.pdf",
+    "/src/assets/Sudhakar-Krovi_20250908_153104_0000.pdf",
+    "/src/assets/Tharanath-Umesh.pdf",
+    "/src/assets/Vijayababu-Boopathy.pdf",
+    "/src/assets/Yogesh-V-Shetty-_20250908_153130_0000.pdf",
   ];
 
   const handleChange = (e) => {
@@ -34,7 +48,15 @@ function AdminUpload() {
 
   return (
     <div className="p-6">
-      <h2 className="text-xl font-bold mb-4">Upload Certificate (Existing Asset)</h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-bold">Upload Certificate (Existing Asset)</h2>
+        <Link 
+          to="/admin/manage"
+          className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
+        >
+          Manage Certificates
+        </Link>
+      </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input 
           type="email"

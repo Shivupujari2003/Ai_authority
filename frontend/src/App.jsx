@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Membership from "./components/Membership";
 import AdminUpload from "./components/AdminUpload";
+import AdminCertificates from "./components/AdminCertificates";
 import UserCertificates from "./components/UserCertificates";
 import { PrivateRoute, AdminRoute } from "./components/PrivateRoute";
 import Login from "./components/Login";
@@ -35,6 +36,14 @@ export default function App() {
             element={
               <AdminRoute>
                 <AdminUpload />
+              </AdminRoute>
+            } 
+          />
+          <Route 
+            path="/admin/manage" 
+            element={
+              <AdminRoute>
+                <AdminCertificates />
               </AdminRoute>
             } 
           />

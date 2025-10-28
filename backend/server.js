@@ -15,6 +15,48 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch(err => console.error(err));
 
+// Registration route
+app.post("/api/auth/register", async (req, res) => {
+  try {
+    const { name, email, phone, password } = req.body;
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists with this email" });
+    }
+
+    // Check if phone already exists
+    const existingPhone = await User.findOne({ phone });
+    if (existingPhone) {
+      return res.status(400).json({ message: "Phone number already registered" });
+    }
+
+    // Create new user (password will be hashed by pre-save hook in User model)
+    const newUser = new User({
+      name,
+      email,
+      phone,
+      password,
+      isAdmin: false // Regular users are not admins
+    });
+
+    await newUser.save();
+
+    res.status(201).json({ 
+      message: "User registered successfully!",
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email
+      }
+    });
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({ message: "Server error during registration" });
+  }
+});
+
 // Login route
 app.post("/api/auth/login", async (req, res) => {
   try {
@@ -81,6 +123,38 @@ app.get("/certificates", async (req, res) => {
   const user = await User.findOne({ email });
   if (!user) return res.status(404).json({ message: "User not found" });
   res.json(user.certificates);
+});
+
+// Admin deletes certificate from user profile
+app.delete("/certificates/:email/:certificateId", async (req, res) => {
+  try {
+    const { email, certificateId } = req.params;
+    
+    console.log("Delete request received:", { email, certificateId });
+
+    // Decode email in case it's URL encoded
+    const decodedEmail = decodeURIComponent(email);
+    
+    console.log("Decoded email:", decodedEmail);
+
+    // Remove certificate from user's certificates array
+    const user = await User.findOneAndUpdate(
+      { email: decodedEmail },
+      { $pull: { certificates: { _id: certificateId } } },
+      { new: true }
+    );
+
+    if (!user) {
+      console.log("User not found:", decodedEmail);
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    console.log("Certificate deleted successfully for:", decodedEmail);
+    res.json({ message: "Certificate deleted successfully!", user });
+  } catch (err) {
+    console.error("Delete error:", err);
+    res.status(500).json({ error: "Failed to delete certificate", details: err.message });
+  }
 });
 
 app.listen(5000, () => console.log("Server running on http://localhost:5000"));
