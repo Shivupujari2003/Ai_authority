@@ -6,7 +6,7 @@ import AdminUpload from "./components/AdminUpload";
 import UserCertificates from "./components/UserCertificates";
 import { PrivateRoute, AdminRoute } from "./components/PrivateRoute";
 import Login from "./components/Login";
-// import Home from "./pages/Home";
+import Home from "./components/Home";
 // import About from "./pages/About";
 // import Services from "./pages/Services";
 // import Contact from "./pages/Contact";
@@ -38,7 +38,7 @@ export default function App() {
               </AdminRoute>
             } 
           />
-          <Route path="/" element={<div className="p-6">Welcome to AI Authority</div>} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </main>
 
