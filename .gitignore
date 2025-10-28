@@ -4,11 +4,10 @@ backend/node_modules/
 frontend/node_modules/
 
 # Environment variables
-*.env
+.env
 */.env
 backend/.env
 frontend/.env
-
 
 # Build outputs
 dist/
