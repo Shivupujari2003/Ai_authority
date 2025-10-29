@@ -1,4 +1,3 @@
-// src/pages/Membership.jsx
 import Login from "../components/Login";
 
 export default function Membership() {

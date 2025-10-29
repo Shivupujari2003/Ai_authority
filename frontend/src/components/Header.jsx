@@ -12,11 +12,11 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-white shadow-md">
+    <header className="w-full z-50 bg-white shadow-md">
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
 
-          {/* ✅ Left: Logo + Title */}
+          {/* ✅ Logo + Title */}
           <div className="flex items-center space-x-2">
             <img
               src={logo}
@@ -36,7 +36,7 @@ export default function Header() {
               About
             </Link>
 
-            {/* 🔹 Knowledge Hub Dropdown */}
+            {/* 🔹 Knowledge Hub */}
             <div className="relative">
               <button
                 onClick={() => toggleDropdown("knowledge")}
@@ -63,7 +63,7 @@ export default function Header() {
               )}
             </div>
 
-            {/* 🔹 Services Dropdown */}
+            {/* 🔹 Services */}
             <div className="relative">
               <button
                 onClick={() => toggleDropdown("services")}
@@ -84,7 +84,7 @@ export default function Header() {
               )}
             </div>
 
-            {/* 🔹 Certification Dropdown */}
+            {/* 🔹 Certification */}
             <div className="relative">
               <button
                 onClick={() => toggleDropdown("certification")}
@@ -123,10 +123,9 @@ export default function Header() {
           </button>
         </div>
 
-        {/* ✅ Mobile Menu */}
+        {/* ✅ Mobile Dropdown */}
         {isMenuOpen && (
           <div className="md:hidden bg-white shadow-lg mt-2 rounded-lg p-4 space-y-4">
-            {/* Top-Level Links */}
             <Link to="/" className="block text-blue-700 font-medium hover:text-blue-500">
               Home
             </Link>
@@ -134,7 +133,6 @@ export default function Header() {
               About
             </Link>
 
-            {/* Knowledge Hub Dropdown */}
             <div>
               <p className="text-blue-700 font-semibold">Knowledge Hub</p>
               <div className="ml-4 space-y-1">
@@ -153,7 +151,6 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Services Dropdown */}
             <div>
               <p className="text-blue-700 font-semibold">Services</p>
               <div className="ml-4 space-y-1">
@@ -166,7 +163,6 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Certification Dropdown */}
             <div>
               <p className="text-blue-700 font-semibold">Certification</p>
               <div className="ml-4 space-y-1">

@@ -8,6 +8,7 @@ import UserCertificates from "./components/UserCertificates";
 import { PrivateRoute, AdminRoute } from "./components/PrivateRoute";
 import Login from "./components/Login";
 import Home from "./components/Home";
+import Contact from "./components/Contact";
 // import About from "./pages/About";
 // import Services from "./pages/Services";
 // import Contact from "./pages/Contact";
@@ -19,35 +20,36 @@ export default function App() {
       <Header />
 
       {/* Main content grows to fill available space */}
-      <main className="flex-grow pt-20">
+      <main className="flex-grow">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/membership" element={<Membership />} />
-          <Route 
-            path="/certificates" 
+          <Route
+            path="/certificates"
             element={
               <PrivateRoute>
                 <UserCertificates />
               </PrivateRoute>
-            } 
+            }
           />
-          <Route 
-            path="/admin/certificates" 
+          <Route
+            path="/admin/certificates"
             element={
               <AdminRoute>
                 <AdminUpload />
               </AdminRoute>
-            } 
+            }
           />
-          <Route 
-            path="/admin/manage" 
+          <Route
+            path="/admin/manage"
             element={
               <AdminRoute>
                 <AdminCertificates />
               </AdminRoute>
-            } 
+            }
           />
           <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
 
