@@ -10,6 +10,9 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import Contact from "./components/Contact";
 import About from "./components/About";
+import PaymentPage from "./components/Payment";
+import Success from "./components/Success";
+import Cancel from "./components/Cancel";
 // import Services from "./pages/Services";
 
 export default function App() {
@@ -50,6 +53,9 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/cancel" element={<Cancel />} />
         </Routes>
       </main>
 

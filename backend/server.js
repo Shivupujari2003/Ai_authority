@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import User from "./models/User.js";
+import paymentRoutes from "./routes/Payment.js";
 
 dotenv.config();
 
@@ -156,5 +157,7 @@ app.delete("/certificates/:email/:certificateId", async (req, res) => {
     res.status(500).json({ error: "Failed to delete certificate", details: err.message });
   }
 });
+
+app.use("/api/payment", paymentRoutes);
 
 app.listen(5000, () => console.log("Server running on http://localhost:5000"));
