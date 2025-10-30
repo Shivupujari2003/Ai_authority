@@ -1,0 +1,76 @@
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Membership from "./components/Membership";
+import AdminUpload from "./components/AdminUpload";
+import AdminCertificates from "./components/AdminCertificates";
+import UserCertificates from "./components/UserCertificates";
+import { PrivateRoute, AdminRoute } from "./components/PrivateRoute";
+import Login from "./components/Login";
+import Home from "./components/Home";
+import Contact from "./components/Contact";
+import About from "./components/About";
+import PaymentPage from "./components/Payment";
+import Success from "./components/Success";
+import Cancel from "./components/Cancel";
+import Frameworks from "./components/Frameworks";
+import Toolkits from "./components/Toolkits";
+import Standards from "./components/Standards";
+import Blogs from "./components/Blogs";
+import BlogPost from "./components/BlogPost";
+// import Services from "./pages/Services";
+
+export default function App() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* Header stays on top */}
+      <Header />
+
+      {/* Main content grows to fill available space */}
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/membership" element={<Membership />} />
+          <Route
+            path="/certificates"
+            element={
+              <PrivateRoute>
+                <UserCertificates />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/certificates"
+            element={
+              <AdminRoute>
+                <AdminUpload />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/manage"
+            element={
+              <AdminRoute>
+                <AdminCertificates />
+              </AdminRoute>
+            }
+          />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/frameworks" element={<Frameworks />} />
+          <Route path="/toolkits" element={<Toolkits />} />
+          <Route path="/standards" element={<Standards />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blog/artificial-intelligence-design" element={<BlogPost />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/cancel" element={<Cancel />} />
+        </Routes>
+      </main>
+
+      {/* Footer sticks at the bottom */}
+      <Footer />
+    </div>
+  );
+}
