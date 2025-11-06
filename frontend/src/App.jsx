@@ -18,7 +18,9 @@ import Toolkits from "./components/Toolkits";
 import Standards from "./components/Standards";
 import Blogs from "./components/Blogs";
 import BlogPost from "./components/BlogPost";
+import ConsultingService from "./components/ConsultingService";
 // import Services from "./pages/Services";
+import TrainingService from "./components/TrainingService";
 
 export default function App() {
   return (
@@ -66,6 +68,8 @@ export default function App() {
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/success" element={<Success />} />
           <Route path="/cancel" element={<Cancel />} />
+          <Route path="/services/training" element={<TrainingService />} />
+          <Route path="/services/consulting" element={<ConsultingService />} />
         </Routes>
       </main>
 
