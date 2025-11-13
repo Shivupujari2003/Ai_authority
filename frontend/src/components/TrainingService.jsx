@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import bgImage from "../assets/Untitled-design-36.png";
 
 export default function TrainingService() {
@@ -15,16 +16,47 @@ export default function TrainingService() {
       content:
         "Dive deep into our exclusive frameworks covering AI Strategy, Enterprise AI Architecture, Solution Architecture, Developer Guidelines, Governance, and Security. Acquire the skills to implement scalable, secure, and compliant AI systems aligned with global ethical standards.",
     },
+
+    // ---- AI STRATEGY WITH KNOW MORE BUTTON ----
     {
       title: "AI Strategy",
-      content:
-        "Develop a robust AI roadmap tailored to your organization’s goals and digital transformation journey.",
+      content: (
+        <div className="flex justify-between items-center">
+          <span>
+            Develop a robust AI roadmap tailored to your organization’s goals and
+            digital transformation journey.
+          </span>
+
+          <Link
+            to="/ai-strategy-course"
+            className="text-indigo-600 hover:underline font-semibold whitespace-nowrap ml-4"
+          >
+            Know more →
+          </Link>
+        </div>
+      ),
     },
+
+    // ---- ENTERPRISE AI ARCHITECTURE WITH KNOW MORE BUTTON ----
     {
       title: "Enterprise AI Architecture",
-      content:
-        "Understand how to design scalable, secure, and efficient AI systems aligned with enterprise needs.",
+      content: (
+        <div className="flex justify-between items-center">
+          <span>
+            Understand how to design scalable, secure, and efficient AI systems
+            aligned with enterprise needs.
+          </span>
+
+          <Link
+            to="/enterprise-ai-architecture-course"
+            className="text-indigo-600 hover:underline font-semibold whitespace-nowrap ml-4"
+          >
+            Know more →
+          </Link>
+        </div>
+      ),
     },
+
     {
       title: "Real-World Application",
       content:
@@ -76,12 +108,12 @@ export default function TrainingService() {
       <div className="max-w-4xl mx-auto py-16 px-6">
         <p className="text-lg text-gray-600 mb-8 text-center">
           Unlock the full potential of your team with expert-led training on AI
-          Authority’s unique proprietary resources. Our training programs
-          empower your workforce to develop responsible, ethical, and scalable
-          AI capabilities.
+          Authority’s unique proprietary resources. Our training programs empower
+          your workforce to develop responsible, ethical, and scalable AI
+          capabilities.
         </p>
 
-        {/* Accordion Container (attached style) */}
+        {/* Accordion */}
         <div className="border rounded-md overflow-hidden">
           {sections.map((section, index) => (
             <div
@@ -100,10 +132,10 @@ export default function TrainingService() {
 
               <div
                 className={`transition-all duration-300 overflow-hidden border-t bg-gray-50 text-gray-700 ${
-                  openIndex === index ? "max-h-[180px] p-4" : "max-h-0 p-0"
+                  openIndex === index ? "max-h-[200px] p-4" : "max-h-0 p-0"
                 }`}
               >
-                <p className="m-0 leading-relaxed">{section.content}</p>
+                <div className="m-0 leading-relaxed">{section.content}</div>
               </div>
             </div>
           ))}

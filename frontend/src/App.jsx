@@ -14,6 +14,8 @@ import PaymentPage from "./components/Payment";
 import Success from "./components/Success";
 import Cancel from "./components/Cancel";
 import Frameworks from "./components/Frameworks";
+import AiStrategyCourse from "./components/AiStrategyCourse";
+import EnterpriseAiArchitectureCourse from "./components/EnterpriseAiArchitectureCourse";
 import Toolkits from "./components/Toolkits";
 import Standards from "./components/Standards";
 import Blogs from "./components/Blogs";
@@ -24,6 +26,7 @@ import TrainingService from "./components/TrainingService";
 import AccreditedTrainers from "./components/AccreditedTrainers";
 import Certifications from "./components/Certifications";
 import CertifiedMembers from "./components/CertifiedMembers";
+import ScrollToTop from "./components/Scroll";
 import Services from "./components/Services";
 
 export default function App() {
@@ -34,6 +37,9 @@ export default function App() {
 
       {/* Main content grows to fill available space */}
       <main className="flex-grow">
+        {/* Scroll to top on each route change */}
+        <ScrollToTop />
+
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/membership" element={<Membership />} />
@@ -78,6 +84,8 @@ export default function App() {
           <Route path="/certifications" element={<Certifications />} />
           <Route path="/certified-members" element={<CertifiedMembers />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/ai-strategy-course" element={<AiStrategyCourse />} />
+          <Route path="/enterprise-ai-architecture-course" element={<EnterpriseAiArchitectureCourse />} />
         </Routes>
       </main>
 
